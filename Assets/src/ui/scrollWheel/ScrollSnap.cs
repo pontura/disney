@@ -23,6 +23,7 @@ public class ScrollSnap : MonoBehaviour
     public bool started;
     public void Init(int activeID)
     {
+        activeID -= 1;
         scrollRect = GetComponent<ScrollRect>();
 
         int qty = totalItems + (freeSpaces*2);
@@ -67,7 +68,7 @@ public class ScrollSnap : MonoBehaviour
             scrollRect.inertia = false;
 
             int activeID = (int)(container.transform.localPosition.y / itemHeight);
-            this.active = activeID - freeSpaces;
+            this.active = activeID - freeSpaces + 1;
 
             float TargetY = points[activeID];
 

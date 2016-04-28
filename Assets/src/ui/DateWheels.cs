@@ -7,11 +7,12 @@ public class DateWheels : MonoBehaviour {
     public ScrollSnap scrollSnap_month;
     public ScrollSnap scrollSnap_year;
 
-	void Start () {
-        scrollSnap_day.Init(0);
-        scrollSnap_month.Init(0);
-        scrollSnap_year.Init(15);
-	}
+    public void Init(int day, int month, int year)
+    {
+        scrollSnap_day.Init(day);
+        scrollSnap_month.Init(month);
+        scrollSnap_year.Init(year - 2000);
+    }
 
     
 }

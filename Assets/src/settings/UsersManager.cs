@@ -11,11 +11,13 @@ public class UsersManager : MonoBehaviour {
         Events.AddUser += AddUser;
         Events.ResetApp += ResetApp;
         Events.RemoveUser += RemoveUser;
+        Events.EditUser += EditUser;
         LoadData();
 	}
     void ResetApp()
     {
         users.Clear();
+        PlayerPrefs.DeleteAll();
     }
     void LoadData()
     {
@@ -45,6 +47,33 @@ public class UsersManager : MonoBehaviour {
             }
         }
     }
+    public UserData GetUser(int id)
+    {
+        foreach (UserData userData in users)
+        {
+            if (userData.id == id)
+                return userData;
+        }
+        return null;
+    }
+    void EditUser(UserData _userData)
+    {
+        print("EditUser "  + _userData.id);
+        foreach (UserData userData in users)
+        {
+            if (userData.id == _userData.id)
+            {
+                userData.username = _userData.username;
+                userData.sex = _userData.sex;
+                userData.year = _userData.year;
+                userData.month = _userData.month;
+                userData.day = _userData.day;
+                print("edita");
+                Events.OnActiveUser(userData.id);
+            }
+        }
+        SaveAll();
+    }
     void AddUser(UserData _userData)
     {
         UserData userData = new UserData();
@@ -58,16 +87,26 @@ public class UsersManager : MonoBehaviour {
 
         SaveAll();
     }
+    
     void RemoveUser(int id)
     {
-        UserData dataToRemove = null;
+        print("REMOVE" + id);
+        int arrayID = 0;
+        int a = 0;
         foreach (UserData userData in users)
         {
+            print("REMOVE " + userData.id + ": " + id);
+
             if (userData.id == id)
-                dataToRemove = userData;
+            {
+                print("si" );
+                arrayID = a;
+            }
+            a++;
         }
-        if (dataToRemove != null)
-            users.Remove(dataToRemove);
+        print("REMOVE");
+        users.RemoveAt(arrayID);
+        SaveAll();
     }
     void SaveAll()
     {

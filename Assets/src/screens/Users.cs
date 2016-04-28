@@ -22,22 +22,28 @@ public class Users : ScreenMain {
             newUserButton.Init(this, userData);
         }
     }
+    public void ResetApp()
+    {
+        Events.ResetApp();
+    }
     public void AddNew()
     {
+        Events.OnInactiveUser();
         Events.GotoTo("BabyInfo");
         if (open) Toogle();
     }
-    public void Ready()
+    public void Ready(UserButton userButton)
     {
+        Events.OnActiveUser(userButton.userData.id);
         Events.GotoTo("ConnectDevice");
         if (open) Toogle();
     }
     public void Toogle()
     {
-        int dest = -130;
+        int dest = -120;
 
         if (open)
-            dest = 130;
+            dest = 120;
 
         open = !open;
         iTween.MoveBy(container.gameObject, iTween.Hash(
@@ -49,13 +55,13 @@ public class Users : ScreenMain {
     }
     public void Edit(UserButton userButton)
     {
-        print(userButton.id);
+        Events.OnActiveUser(userButton.userData.id);
         Events.GotoTo("BabyInfo");
+        if (open) Toogle();
     }
     public void Delete(UserButton userButton)
     {
-        Events.RemoveUser(userButton.id);
-        print(userButton.id);
+        Events.RemoveUser(userButton.userData.id);
         Destroy(userButton.gameObject);
     }
 }

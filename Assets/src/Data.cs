@@ -7,6 +7,7 @@ public class Data : MonoBehaviour
     const string PREFAB_PATH = "Data";
     static Data mInstance = null;
     public UsersManager usersManager;
+    public UserData userData;
 
     public static Data Instance
     {
@@ -36,5 +37,6 @@ public class Data : MonoBehaviour
             return;
         }
         usersManager = GetComponent<UsersManager>();
+        userData = GetComponent<UserData>();
     }  
 }
