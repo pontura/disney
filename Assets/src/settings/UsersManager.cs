@@ -27,8 +27,6 @@ public class UsersManager : MonoBehaviour {
 
             if (userDataString.Length > 1)
             {
-                print(userDataString);
-
                 UserData userData = new UserData();
                 userData.id = a;
                 string[] userDataArr = userDataString.Split("_"[0]);

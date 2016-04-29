@@ -47,7 +47,7 @@ public class BabyInfo : ScreenMain {
         string month = dateWheels.scrollSnap_month.GetData();
         string day = dateWheels.scrollSnap_day.GetData();
 
-        print("year: " + year + "  month: " + month + "   DAY: " + day  );
+      //  print("year: " + year + "  month: " + month + "   DAY: " + day  );
 
         data.year = int.Parse(year);
         data.month = int.Parse(month);
