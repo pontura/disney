@@ -12,7 +12,14 @@ public class ScreenManager : MonoBehaviour {
     public List<ScreenMain> screens;
     public GameObject screensContainer;
 
-    public ScreenMain newScreen;    
+    private int transitionSpeed = 10;
+
+    public Canvas canvas;
+
+    public float ScreenWidth;
+
+    public ScreenMain newScreen;
+    public int _X;
 
     void Start()
     {
@@ -25,6 +32,8 @@ public class ScreenManager : MonoBehaviour {
             screenMain.gameObject.SetActive(false);
         ActivateScreen(screens[0]);
         screens[0].transform.localPosition = Vector3.zero;
+
+        ScreenWidth = Screen.width / canvas.scaleFactor;
     }
     void OnDestroy()
     {
@@ -64,26 +73,30 @@ public class ScreenManager : MonoBehaviour {
     private bool moveBack;
     public void Move(string _newScreen, bool moveBack)
     {
-        print("MoveTo");
+       // ScreenWidth = Screen.width;
+        print("ScreenWidth: " + ScreenWidth + "   screen: " + Screen.width + "  scaleFactor: " + canvas.scaleFactor);
+
         lastScene = activeScreen.name;
         this.moveBack = moveBack;
         newScreen = GetScreenByName(_newScreen);
         newScreen.gameObject.SetActive(true);
         if (moveBack)
-            Actual_X = -Screen.width ;
+            Actual_X = -ScreenWidth;
         else
-            Actual_X = Screen.width ;
+            Actual_X = ScreenWidth;
+
         SetPosition(newScreen, Actual_X);
-      //  StartCoroutine("MoveCoroutine");
         MoveNow();
     }
     void MoveNow()
-    {        
+    {
         newScreen.OnFocus();
 
-        float newX = -Screen.width ;
-        if(moveBack)
-            newX = Screen.width ;
+        print("MoveNow  " + Screen.width);
+        //ScreenWidth = Screen.width;
+        float newX = -(Screen.width);
+        if (moveBack)
+            newX = (Screen.width);
 
         iTween.MoveBy(newScreen.gameObject, iTween.Hash(
               "x", newX,
@@ -96,7 +109,7 @@ public class ScreenManager : MonoBehaviour {
              "x", newX,
              "time", transitionDuration,
              "easeType", "easeOutCubic"
-         ));        
+         ));
     }
     void OnAnimationComplete()
     {
@@ -105,35 +118,6 @@ public class ScreenManager : MonoBehaviour {
         activeScreen = newScreen;
         SetPosition(activeScreen, 0);
     }
-    //IEnumerator MoveCoroutine()
-    //{
-    //    newScreen.OnFocus();
-    //    if (moveBack)
-    //    {
-    //        while (Actual_X <= 0)
-    //        {
-    //            SetPosition(activeScreen, Actual_X + Screen.width);
-    //            SetPosition(newScreen, Actual_X);
-    //            Actual_X += transitionSpeed;
-    //            yield return new WaitForFixedUpdate();
-    //        }
-    //    }
-    //    else
-    //    {
-    //        while (Actual_X >= 0)
-    //        {
-    //            SetPosition(activeScreen, Actual_X - Screen.width);
-    //            SetPosition(newScreen, Actual_X);
-    //            Actual_X -= transitionSpeed;
-    //            yield return new WaitForFixedUpdate();
-    //        }
-    //    }
-    //    ChangeActiveScreen();
-    //    activeScreen = newScreen;
-    //    SetPosition(activeScreen, 0);
-    //}
-
-   
     private void SetPosition(ScreenMain screenMain, float _x)
     {
         Vector2 pos = screenMain.transform.localPosition;

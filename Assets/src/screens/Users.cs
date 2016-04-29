@@ -7,7 +7,8 @@ public class Users : ScreenMain {
     public UserButton userButton;
     public Transform container;
     private bool open;
-
+    public int MoveX;
+        
 	override public void OnFocus () {
         AddButtons();
 	}
@@ -20,6 +21,7 @@ public class Users : ScreenMain {
             UserButton newUserButton = Instantiate(userButton);
             newUserButton.transform.SetParent(container);
             newUserButton.Init(this, userData);
+            newUserButton.transform.localScale = Vector3.one;
         }
     }
     public void ResetApp()
@@ -40,10 +42,10 @@ public class Users : ScreenMain {
     }
     public void Toogle()
     {
-        int dest = -120;
+        int dest = -MoveX;
 
         if (open)
-            dest = 120;
+            dest = MoveX;
 
         open = !open;
         iTween.MoveBy(container.gameObject, iTween.Hash(
