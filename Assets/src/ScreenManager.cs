@@ -73,7 +73,7 @@ public class ScreenManager : MonoBehaviour {
     private bool moveBack;
     public void Move(string _newScreen, bool moveBack)
     {
-       // ScreenWidth = Screen.width;
+        canvas.GetComponent<CanvasGroup>().blocksRaycasts = false;
         print("ScreenWidth: " + ScreenWidth + "   screen: " + Screen.width + "  scaleFactor: " + canvas.scaleFactor);
 
         lastScene = activeScreen.name;
@@ -113,6 +113,7 @@ public class ScreenManager : MonoBehaviour {
     }
     void OnAnimationComplete()
     {
+        canvas.GetComponent<CanvasGroup>().blocksRaycasts = true;
         print("OnAnimationComplete");
         ChangeActiveScreen();
         activeScreen = newScreen;
