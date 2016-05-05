@@ -7,7 +7,7 @@ public class Users : ScreenMain {
     public UserButton userButton;
     public Transform container;
     private bool open;
-    public int MoveX;
+    private int MoveX;
         
 	override public void OnFocus () {
         AddButtons();
@@ -23,6 +23,8 @@ public class Users : ScreenMain {
             newUserButton.Init(this, userData);
             newUserButton.transform.localScale = Vector3.one;
         }
+        print(ScreenManager.Instance.canvas.scaleFactor);
+        MoveX = (int)(70 * ScreenManager.Instance.canvas.scaleFactor);
     }
     public void ResetApp()
     {

@@ -4,6 +4,8 @@ using System.Collections.Generic;
 
 public class ScreenManager : MonoBehaviour {
 
+    const string PREFAB_PATH = "ScreenManager";
+    static ScreenManager mInstance = null;
     public float transitionDuration;
     private float Actual_X;
 
@@ -21,6 +23,34 @@ public class ScreenManager : MonoBehaviour {
     public ScreenMain newScreen;
     public int _X;
 
+    public static ScreenManager Instance
+    {
+        get
+        {
+            if (mInstance == null)
+            {
+                mInstance = FindObjectOfType<ScreenManager>();
+
+                if (mInstance == null)
+                {
+                    GameObject go = Instantiate(Resources.Load<GameObject>(PREFAB_PATH)) as GameObject;
+                    mInstance = go.GetComponent<ScreenManager>();
+                    go.transform.localPosition = new Vector3(0, 0, 0);
+                }
+            }
+            return mInstance;
+        }
+    }
+    void Awake()
+    {
+        if (!mInstance)
+            mInstance = this;
+        else
+        {
+            Destroy(this.gameObject);
+            return;
+        }
+    }
     void Start()
     {
         Events.GotoTo += GotoTo;
