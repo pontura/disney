@@ -7,6 +7,9 @@ public class UserButton : MonoBehaviour,IBeginDragHandler, IDragHandler, IEndDra
 
     public Text field;
 
+    public Color COLOR_boy;
+    public Color COLOR_girl;
+
     public Image boy;
     public Image girl;
 
@@ -38,11 +41,13 @@ public class UserButton : MonoBehaviour,IBeginDragHandler, IDragHandler, IEndDra
         {
             boy.enabled = true;
             girl.enabled = false;
+            field.color = COLOR_boy;
         }
         else
         {
             boy.enabled = false;
             girl.enabled = true;
+            field.color = COLOR_girl;
         }
 	}
     public void Clicked()

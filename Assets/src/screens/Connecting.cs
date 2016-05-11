@@ -32,7 +32,7 @@ public class Connecting : ScreenMain {
     }
     public void Go()
     {
-        Events.GotoTo("ConnectDevice");
+        Events.GotoTo("Activities");
     }
     void OnConnection()
     {
