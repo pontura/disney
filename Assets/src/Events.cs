@@ -18,7 +18,9 @@ public static class Events
     public static System.Action<int> OnActiveUser = delegate { };
     public static System.Action OnInactiveUser = delegate { };
 
-
+    public static System.Action<MusicPlayer.Song, int> OnSelectSong = delegate { };
+    public static System.Action OnToogleMusicState = delegate { };
+    
     public static System.Action<string> OnMusicChange = delegate { };
     public static System.Action<float> OnMusicVolumeChanged = delegate { };
 }

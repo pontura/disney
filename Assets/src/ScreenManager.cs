@@ -61,7 +61,7 @@ public class ScreenManager : MonoBehaviour {
 
         foreach (ScreenMain screenMain in screensContainer.GetComponentsInChildren<ScreenMain>())
             screenMain.gameObject.SetActive(false);
-        ActivateScreen(screens[0]);
+        ActivateScreen(screens[ActivityActiveID]);
         screens[0].transform.localPosition = Vector3.zero;
 
         ScreenWidth = Screen.width / canvas.scaleFactor;
@@ -104,6 +104,7 @@ public class ScreenManager : MonoBehaviour {
     private bool moveBack;
     public void Move(string _newScreen, bool moveBack)
     {
+        activeScreen.LoseFocus();
         Events.OnMusicChange("");
 
         canvas.GetComponent<CanvasGroup>().blocksRaycasts = false;
@@ -122,6 +123,7 @@ public class ScreenManager : MonoBehaviour {
     }
     void MoveNow()
     {
+        
         newScreen.OnFocus();
         //ScreenWidth = Screen.width;
         float newX = -(Screen.width);

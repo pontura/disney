@@ -4,7 +4,6 @@ using SimpleJSON;
  
 public class DialoguesManager : MonoBehaviour {
  
- 
     public string currentIP;
     public string currentCountry;
     public string currentCity;

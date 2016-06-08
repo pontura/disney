@@ -17,9 +17,7 @@ public class Connecting : ScreenMain {
     }
 
 
-    //PONTURA: Hardcodeó:
-    void OnEnable() { OnConnection(); }
-    /////////////////////////////////
+    
 
 
 	void Start()
@@ -28,7 +26,7 @@ public class Connecting : ScreenMain {
 		is_connected = false;
 	}
 
-    override public void OnFocus() {
+    override public void OnFocus() {       
 
 		PLANBluetoothManager.Instance.Init("Logitech X50",0);
         connectingPanel.SetActive(true);
@@ -37,8 +35,8 @@ public class Connecting : ScreenMain {
         state = states.CONNECTING;
 
         //HARDCODE:
-      //  Invoke("OnConnection", 3);
-        ///////////
+        Invoke("OnConnection", 2);
+        /////////////////////////////////
     }
 
 

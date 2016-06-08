@@ -1,0 +1,191 @@
+{
+	arriba_abajo:
+	[
+		{
+			tema: CUMPLEAÑOS,
+			masculino: "¡Hola amigo! ¡Que alegría verte hoy!¡Falta poco para tu cumpleaños!¿Estás listo para jugar Arriba y Abajo?",
+			femenino : "¡Hola amiga! ¡Que alegría verte hoy!¡Falta poco para tu cumpleaños!¿Estás listo para jugar Arriba y Abajo?"
+		},	
+		{
+			tema: SOL,
+			masculino: "¡Hola amigo! ¡Que hermosa es la lluvia! ¿Estás listo para jugar Arriba y Abajo?",
+			femenino : "¡Hola amiga! Que hermoso día! ¿Estás listo para jugar Arriba y Abajo?"
+		},	
+		{
+			tema: LLUVIA,
+			masculino: "¡Hola amigo! ¡Que hermosa es la lluvia! ¿Estás listo para jugar Arriba y Abajo?",
+			femenino : "¡Hola amiga! ¡Que hermosa es la lluvia! ¿Estás listo para jugar Arriba y Abajo?"
+		},
+		{
+			tema: FRESCO,
+			masculino: "¡Hola amigo! ¡Que día fresco! ¿Estás listo para jugar Arriba y Abajo?",
+			femenino : "¡Hola amiga! ¡Que día fresco! ¿Estás listo para jugar Arriba y Abajo?"
+		},
+		{
+			tema: MAÑANA,
+			masculino: "¡Buenos días amigo! ¡Que alegría verte hoy! ¿Estas listo para jugar Arriba y Abajo?",
+			femenino : "¡Buenos días amiga! ¡Que alegría verte hoy! ¿Estas listo para jugar Arriba y Abajo?"
+		},
+		{
+			tema: TARDE,
+			masculino: "¡Hola amigo! ¡Qué linda tarde para jugar! ¿Estas listo para jugar Arriba y Abajo?",
+			femenino : "¡Hola amiga! ¡Qué linda tarde para jugar! ¿Estas listo para jugar Arriba y Abajo?"
+		},
+		{
+			tema: NOCHE,
+			masculino: "¡Hola amigo! ¡Ya se acerca la hora de ir a dormir! ¿Estas listo para jugar Arriba y Abajo?",
+			femenino : "¡Hola amiga! ¡Ya se acerca la hora de ir a dormir! ¿Estas listo para jugar Arriba y Abajo?"
+		},
+		{
+			tema: FRECUENCIA_ALTA,
+			masculino: "¡Hola amigo! ¡Que divertido volver a verte! ¿Estás listo para jugar Arriba y Abajo?",
+			femenino : "¡Hola amiga! ¡Que divertido volver a verte! ¿Estas listo para jugar Arriba y Abajo?"
+		},
+		{
+			tema: FRECUENCIA_BAJA,
+			masculino: "¡Hola amigo! ¡Al fin volvemos a vernos! ¿Estás listo para jugar Arriba y Abajo?",
+			femenino : "¡Hola amiga! ¡Al fin volvemos a vernos! ¿Estás listo para jugar Arriba y Abajo?"
+		},
+		{
+			tema:CIERRE,
+			masculino: "¡Pues empecemos a jugar!",
+			femenino : "¡Pues empecemos a jugar!"
+		}
+	],
+	
+	
+	cosquillas:
+	[
+		{
+			tema: CUMPLEAÑOS,
+			masculino: "¡Hola amigo! ¡Que alegría verte hoy! ¡Falta poco para tu cumpleaños!",
+			femenino : "¡Hola amiga! ¡Que alegría verte hoy! ¡Falta poco para tu cumpleaños!"
+		},	
+		{
+			tema: SOL,
+			masculino: "¡Hola amigo! Que hermoso día! ¿Quieres jugar a las cosquillas?",
+			femenino : "¡Hola amiga! Que hermoso día! ¿Quieres jugar a las cosquillas?"
+		},	
+		{
+			tema: LLUVIA,
+			masculino: "¡Hola amigo! ¡Que hermosa es la lluvia! Vamos a jugar a las cosquillas.",
+			femenino : "¡Hola amiga! ¡Que hermosa es la lluvia! Vamos a jugar a las cosquillas."
+		},
+		{
+			tema: FRESCO,
+			masculino: "¡Hola amigo! ¡Que día fresco! Juguemos a las cosquillas.",
+			femenino : "¡Hola amiga! ¡Que día fresco! Juguemos a las cosquillas."
+		},
+		{
+			tema: MAÑANA,
+			masculino: "¡Buenos días amigo! ¡Que alegría verte hoy!",
+			femenino : "¡Buenos días amiga! ¡Que alegría verte hoy!"
+		},
+		{
+			tema: TARDE,
+			masculino: "¡Hola amigo! ¡Qué linda tarde para jugar! Juguemos a las cosquillas.",
+			femenino : "¡Hola amiga! ¡Qué linda tarde para jugar! Juguemos a las cosquillas."
+		},
+		{
+			tema: NOCHE,
+			masculino: "¡Hola amigo! ¡Vamos a jugar a las cosquillas antes de ir a dormir!",
+			femenino : "¡Hola amiga! ¡Vamos a jugar a las cosquillas antes de ir a dormir!"
+		},
+		{
+			tema: FRECUENCIA_ALTA,
+			masculino: "¡Hola amigo! ¡Que divertido volver a verte! ¿Estás listo para unas cosquillas?",
+			femenino : "¡Hola amiga! ¡Que divertido volver a verte! ¿Estás listo para unas cosquillas?"
+		},
+		{
+			tema: FRECUENCIA_BAJA,
+			masculino: "¡Hola amigo! ¡Al fin volvemos a vernos! Jugemos a las cosquillas.",
+			femenino : "¡Hola amiga! ¡Al fin volvemos a vernos! Jugemos a las cosquillas."
+		},
+		{
+			tema:CIERRE,
+			masculino: "¡Pues empecemos a jugar!",
+			femenino : "¡Pues empecemos a jugar!"
+		}
+	],
+	
+	
+	musica_suave:
+	[
+		{
+			tema: CUMPLEAÑOS,
+			masculino: "¡Hola amigo! ¡Que alegría verte hoy! ¡Falta poco para tu cumpleaños! Vamos a prepararnos con un poco de música.",
+			femenino : "¡Hola amiga! ¡Que alegría verte hoy! ¡Falta poco para tu cumpleaños. Vamos a prepararnos con un poco de música."
+		},	
+		{
+			tema: SOL,
+			masculino: "¡Hola amigo! Que hermoso día! Aprovechemos para escuchar un poco de música.",
+			femenino : "¡Hola amiga! Que hermoso día! Aprovechemos para escuchar un poco de música."
+		},	
+		{
+			tema: LLUVIA,
+			masculino: "¡Hola amigo! El día está lluvioso, vamos a descansar con un poco de música",
+			femenino : "¡Hola amiga! El día está lluvioso, vamos a descansar con un poco de música"
+		},
+		{
+			tema: FRESCO,
+			masculino: "¡Hola amigo! ¡Que día fresco! Vamos a descansar escuchando un poco de música.",
+			femenino : "¡Hola amiga! ¡Que día fresco! Vamos a descansar escuchando un poco de música."
+		},
+		{
+			tema: MAÑANA,
+			masculino: "¡Buenos días amigo! ¡Que alegría verte hoy! ¿Estás listo para escuchar música?",
+			femenino : "¡Buenos días amiga! ¡Que alegría verte hoy! ¿Estás listo para escuchar música?"
+		},
+		{
+			tema: TARDE,
+			masculino: "¡Hola amigo! ¡Qué linda tarde para escuchar un poco de música!",
+			femenino : "¡Hola amigo! ¡Qué linda tarde para escuchar un poco de música!"
+		},
+		{
+			tema: NOCHE,
+			masculino: "¡Hola amigo! ¿Quiéres escuchar música antes de ir a dormir?",
+			femenino : "¡Hola amiga! ¿Quiéres escuchar música antes de ir a dormir?"
+		},
+		{
+			tema: FRECUENCIA_ALTA,
+			masculino: "¡Hola amigo! ¡Que divertido volver a verte! Escuchemos un poco de música.",
+			femenino : "¡Hola amiga! ¡Que divertido volver a verte! Escuchemos un poco de música."
+		},
+		{
+			tema: FRECUENCIA_BAJA,
+			masculino: "¡Hola amigo! ¡Al fin volvemos a vernos! Escuchemos un poco de música.",
+			femenino : "¡Hola amiga! ¡Al fin volvemos a vernos! Escuchemos un poco de música."
+		},
+		{
+			tema:CIERRE,
+			masculino: "¡Escuchemos un poco de música juntos!",
+			femenino : "¡Escuchemos un poco de música juntos!"
+		}
+	],
+	
+	
+	
+	cumpleaños:
+	[
+		{
+			tema: CUMPLEAÑOS,
+			masculino: "¡Feliz cumpleaños, amiguito!",
+			femenino : "¡Feliz cumpleaños, amiguita!"
+		},	
+		{
+			tema: CUMPLEAÑOS,
+			masculino: "Hoy es tu cumpleaños, ¡vamos a celebrarlo!",
+			femenino : "Hoy es tu cumpleaños, ¡vamos a celebrarlo!"
+		},	
+		{
+			tema: CUMPLEAÑOS,
+			masculino: "Hoy es tu cumpleaños, ¡celebremos jugando!",
+			femenino : "Hoy es tu cumpleaños, ¡celebremos jugando!"
+		},
+		{
+			tema: CUMPLEAÑOS,
+			masculino: "¿Hoy es tu cumpleaños? Felicidades amiguito, vamos a festejar",
+			femenino : "¿Hoy es tu cumpleaños? Felicidades amiguita, vamos a festejar"
+		}
+	]
+}

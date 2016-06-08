@@ -9,6 +9,7 @@ public class Data : MonoBehaviour
     public UsersManager usersManager;
     public UserData userData;
     public GameManager gameManager;
+    public Texts texts;
 
     public static Data Instance
     {
@@ -40,5 +41,6 @@ public class Data : MonoBehaviour
         usersManager = GetComponent<UsersManager>();
         userData = GetComponent<UserData>();
         gameManager = GetComponent<GameManager>();
+        texts = GetComponent<Texts>();
     }  
 }
