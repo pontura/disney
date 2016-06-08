@@ -17,6 +17,7 @@ public class ScreenManager : MonoBehaviour {
     private int transitionSpeed = 10;
 
     public Canvas canvas;
+    public int ActivityActiveID;
 
     public float ScreenWidth;
 
@@ -72,7 +73,7 @@ public class ScreenManager : MonoBehaviour {
         Events.ResetApp -= ResetApp;
         Events.Back -= Back;
     }
-    void Back()
+    public void Back()
     {
         GotoBackTo(lastScene);
     }
@@ -81,11 +82,11 @@ public class ScreenManager : MonoBehaviour {
         ActivateScreen(screens[0]);
         screens[0].transform.localPosition = Vector3.zero;
     }
-    void GotoTo(string screenName)
+    public void GotoTo(string screenName)
     {
         Move(screenName, false);
     }
-    void GotoBackTo(string screenName)
+    public void GotoBackTo(string screenName)
     {
         Move(screenName, true);
     }
@@ -103,6 +104,8 @@ public class ScreenManager : MonoBehaviour {
     private bool moveBack;
     public void Move(string _newScreen, bool moveBack)
     {
+        Events.OnMusicChange("");
+
         canvas.GetComponent<CanvasGroup>().blocksRaycasts = false;
 
         lastScene = activeScreen.name;

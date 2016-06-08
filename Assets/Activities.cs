@@ -6,6 +6,6 @@ public class Activities : ScreenMain {
     public void Select(int id)
     {
         Events.SetGameId(id);
-        Events.GotoTo("Activity_" + id);
+        Events.GotoTo("Activity_" + id + "_bienvenida");
     }
 }

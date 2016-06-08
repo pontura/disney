@@ -11,6 +11,7 @@ public static class Events
     public static System.Action<int> RemoveUser = delegate { };
     public static System.Action<string> GotoTo = delegate { };
     public static System.Action<string> GotoBackTo = delegate { };
+    public static System.Action SettingsOpen = delegate { };
     public static System.Action Back = delegate { };
     public static System.Action<int> SetGameId = delegate { };
 

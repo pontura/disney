@@ -16,12 +16,16 @@ public class Connecting : ScreenMain {
         READY
     }
 
-	void	Start()
-	{
 
+    //PONTURA: Hardcodeó:
+    void OnEnable() { OnConnection(); }
+    /////////////////////////////////
+
+
+	void Start()
+	{
 		PLANBluetoothManager.Instance.OnBluetooth += OnBluetoothEvent;
 		is_connected = false;
-
 	}
 
     override public void OnFocus() {
