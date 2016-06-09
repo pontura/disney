@@ -79,6 +79,15 @@ public class MusicPlayer : MonoBehaviour {
         audioSource.Play();
         playing = true;
     }
+    public void End()
+    {
+        playing = false;
+        audioSource.Pause();
+        songTime = 0;
+        foreach (MusicButton musicButton in buttons)
+                musicButton.SetState(false);
+        slider.value = 0;
+    }
     public void Pause()
     {
         playing = false;

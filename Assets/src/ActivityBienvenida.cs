@@ -24,7 +24,7 @@ public class ActivityBienvenida : ScreenMain
         if (notActive) return;
         if (ScreenManager.Instance.ActivityActiveID == 4)
         {
-            Next();
+            Events.GotoTo("Playing_4");
             return;
         }
         field.text = Data.Instance.texts.GetCierra();

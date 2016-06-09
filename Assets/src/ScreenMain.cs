@@ -17,5 +17,6 @@ public class ScreenMain : MonoBehaviour {
     public void GoBackTo(string ScreenName)
     {
         Events.GotoBackTo(ScreenName);
+        Data.Instance.musicPlayer.End();
     }
 }

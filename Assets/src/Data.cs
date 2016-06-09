@@ -10,6 +10,7 @@ public class Data : MonoBehaviour
     public UserData userData;
     public GameManager gameManager;
     public Texts texts;
+    public MusicPlayer musicPlayer;
 
     public static Data Instance
     {
@@ -42,5 +43,6 @@ public class Data : MonoBehaviour
         userData = GetComponent<UserData>();
         gameManager = GetComponent<GameManager>();
         texts = GetComponent<Texts>();
+        musicPlayer = GetComponent<MusicPlayer>();
     }  
 }

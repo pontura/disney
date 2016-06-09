@@ -22,6 +22,8 @@ public class Texts : MonoBehaviour
         public string femenino;
     }
 
+    private bool Frecuencia_baja_ready;
+
     string json_musica_suave = "content";
 
     void Start()
@@ -112,12 +114,39 @@ public class Texts : MonoBehaviour
     {
         int day = DateTime.Now.Day;
         int month = DateTime.Now.Month;
+        int rand = UnityEngine.Random.Range(0, 100);
+        int hour = System.DateTime.Now.Hour;
+
+        print("hour: " + hour);
+
         TextSaludosData saludosData = null;
 
         if (day == Data.Instance.userData.day && month == Data.Instance.userData.month)
             saludosData = GetRandomCumpleanos();
+        else if (SessionTimeController.Instance.lastTimeConnected_days > 5 && !Frecuencia_baja_ready)
+        {
+            Frecuencia_baja_ready = true;
+            saludosData = GetSaludoByTema("FRECUENCIA_BAJA");
+        } else if (rand < 40)
+        {
+            if (DialoguesManager.Instance.weather_main == "Clouds")
+                saludosData = GetSaludoByTema("LLUVIA");
+            else if (DialoguesManager.Instance.temperature < 20)
+                saludosData = GetSaludoByTema("FRESCO");
+            else
+                saludosData = GetSaludoByTema("SOL");
+        }
+        else if (rand < 80)
+        {
+            if (hour>5 && hour<12)
+                saludosData = GetSaludoByTema("MAÑANA");
+            else if (hour > 11 && hour < 19)
+                saludosData = GetSaludoByTema("TARDE");
+            else
+                saludosData = GetSaludoByTema("NOCHE");
+        }
         else
-            saludosData = GetRandomSaludo();
+            saludosData = GetSaludoByTema("FRECUENCIA_ALTA");
 
         if(Data.Instance.userData.sex == UserData.sexs.BOY)
             return saludosData.masculino;
@@ -128,29 +157,21 @@ public class Texts : MonoBehaviour
     {
         return cumpleaños[cumpleaños.Count-1];
     }
-    private TextSaludosData GetRandomSaludo()
+    private TextSaludosData GetSaludoByTema(string _tema)
     {
-        TextSaludosData data;
+        List<TextSaludosData> dataArr;
         switch (ScreenManager.Instance.ActivityActiveID)
         {
-            case 1:
-                data = arriba_abajo[UnityEngine.Random.Range(0,arriba_abajo.Count - 1)]; break;
-            case 2:
-                data = cosquillas[UnityEngine.Random.Range(0, cosquillas.Count - 1)];  break;
-            case 3:
-                data = musica_suave[UnityEngine.Random.Range(0, musica_suave.Count - 1)]; break;
-            default:
-                return cumpleaños[UnityEngine.Random.Range(0, cumpleaños.Count - 1)];
+            case 1: dataArr = arriba_abajo; break;
+            case 2: dataArr = cosquillas; break;
+            default: dataArr = musica_suave; break;
         }
-
-        if (isBirthday() && UnityEngine.Random.Range(0,10)<8)
-            return GetRandomCumpleanos();
-        if (CumpleanosCerca() && UnityEngine.Random.Range(0, 10) < 20)
-            return GetCumpleCerca();
-        if (data.tema == "CIERRE" || (!CumpleanosCerca() && data.tema == "CUMPLEAÑOS"))
-            return GetRandomSaludo();
-
-        return data;
+        foreach (TextSaludosData textSaludosData in dataArr)
+        {
+            if (textSaludosData.tema == _tema)
+                return textSaludosData;
+        }
+        return null;
     }
 
 }

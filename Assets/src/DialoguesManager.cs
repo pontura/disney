@@ -3,7 +3,10 @@ using System.Collections;
 using SimpleJSON;
  
 public class DialoguesManager : MonoBehaviour {
- 
+
+    public string lat = "-34.5";
+    public string lon = "-58.5";
+
     public string currentIP;
     public string currentCountry;
     public string currentCity;
@@ -15,7 +18,20 @@ public class DialoguesManager : MonoBehaviour {
     public string weather_main;
     public string weather_desc;
     public float temperature;
- 
+
+    public static DialoguesManager mInstance;
+
+    void Awake()
+    {
+        mInstance = this;
+    }
+    public static DialoguesManager Instance
+    {
+        get
+        {
+            return mInstance;
+        }
+    }
     void Start()
     {
         StartCoroutine(SendRequest());
@@ -23,30 +39,39 @@ public class DialoguesManager : MonoBehaviour {
  
     IEnumerator SendRequest()
     {
-        //get the players IP, City, Country
-        //Network.Connect("http://google.com");
-        //currentIP = Network.player.externalIP;
-        //print("currentIP " + currentIP);
 
-        //Network.Disconnect();
+        Network.Connect("http://google.com");
+        currentIP = Network.player.externalIP;
+        Network.Disconnect();
+
+        
+        WWW cityRequest;
+        if (currentIP != "UNASSIGNED_SYSTEM_ADDRESS")
+            cityRequest = new WWW("http://www.geoplugin.net/json.gp?ip=" + currentIP); //get our location info
+        else
+            cityRequest = new WWW("http://api.openweathermap.org/data/2.5/weather?lat=" + lat  +"&lon=" + lon + "&appid=c38e78ba5697a7f11bb5927e98bbca8a"); //get our location info
+
+        yield return cityRequest;
  
-        //WWW cityRequest = new WWW("http://api.openweathermap.org/data/2.5/weather?lat=-34.5&lon=-58.5&appid=c38e78ba5697a7f11bb5927e98bbca8a"); //get our location info
-        //yield return cityRequest;
+        if (cityRequest.error == null || cityRequest.error == "")
+        {
+            var N = JSON.Parse(cityRequest.text);
+            currentCity = N["geoplugin_city"].Value;
+            currentCountry = N["geoplugin_countryName"].Value;
+        }
  
-        //if (cityRequest.error == null || cityRequest.error == "")
-        //{
-        //    var N = JSON.Parse(cityRequest.text);
-        //    currentCity = N["geoplugin_city"].Value;
-        //    currentCountry = N["geoplugin_countryName"].Value;
-        //}
- 
-        //else
-        //{
-        //    Debug.Log("WWW error: " + cityRequest.error);
-        //}
+        else
+        {
+            Debug.Log("WWW error: " + cityRequest.error);
+        }
  
         //get the current weather
-        WWW request = new WWW("http://api.openweathermap.org/data/2.5/weather?lat=-34.5&lon=-58.5&appid=c38e78ba5697a7f11bb5927e98bbca8a"); //get our location info
+        WWW request;        
+        if(currentCity != "")
+            request = new WWW("http://api.openweathermap.org/data/2.5/weather?q=" + currentCity);
+        else
+            request = new WWW("http://api.openweathermap.org/data/2.5/weather?lat=" + lat + "&lon=" + lon + "&appid=c38e78ba5697a7f11bb5927e98bbca8a");
+
         yield return request;
  
         if (request.error == null || request.error == "")

@@ -8,7 +8,7 @@
 		},	
 		{
 			tema: SOL,
-			masculino: "¡Hola amigo! ¡Que hermosa es la lluvia! ¿Estás listo para jugar Arriba y Abajo?",
+			masculino: "¡Hola amigo! Que hermoso día! ¿Estás listo para jugar Arriba y Abajo?"
 			femenino : "¡Hola amiga! Que hermoso día! ¿Estás listo para jugar Arriba y Abajo?"
 		},	
 		{
