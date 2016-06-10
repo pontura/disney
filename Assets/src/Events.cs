@@ -22,6 +22,10 @@ public static class Events
     public static System.Action OnToogleMusicState = delegate { };
     
     public static System.Action<string> OnMusicChange = delegate { };
+    public static System.Action<string> OnVoice = delegate { };
+    public static System.Action OnVoiceReady = delegate { };
+    public static System.Action OnVoiceNotExists = delegate { };
+    
     public static System.Action<float> OnMusicVolumeChanged = delegate { };
 }
    

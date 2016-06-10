@@ -8,7 +8,7 @@ using SimpleJSON;
 
 public class Texts : MonoBehaviour
 {
-
+    private bool yaSaludoPorCumple;
     public List<TextSaludosData> arriba_abajo;
     public List<TextSaludosData> cosquillas;
     public List<TextSaludosData> musica_suave;
@@ -20,6 +20,8 @@ public class Texts : MonoBehaviour
         public string tema;
         public string masculino;
         public string femenino;
+        public string sound_masculino;
+        public string sound_femenino;
     }
 
     private bool Frecuencia_baja_ready;
@@ -36,12 +38,12 @@ public class Texts : MonoBehaviour
     {
         var Json = SimpleJSON.JSON.Parse(json_data);
 
-        Fill(arriba_abajo, Json["arriba_abajo"]);
-        Fill(cosquillas, Json["cosquillas"]);
-        Fill(musica_suave, Json["musica_suave"]);
-        Fill(cumpleaños, Json["cumpleaños"]);
+        Fill(arriba_abajo, Json["arriba_abajo"], "arriba_abajo");
+        Fill(cosquillas, Json["cosquillas"], "cosquillas");
+        Fill(musica_suave, Json["musica_suave"], "musica_suave");
+        Fill(cumpleaños, Json["cumpleaños"], "cumpleaños");
     }
-    private void Fill(List<TextSaludosData> arr, JSONNode content)
+    private void Fill(List<TextSaludosData> arr, JSONNode content, string tema)
     {
         for (int a = 0; a < content.Count; a++)
         {
@@ -49,6 +51,16 @@ public class Texts : MonoBehaviour
             saludo.tema = content[a]["tema"];
             saludo.masculino = content[a]["masculino"];
             saludo.femenino = content[a]["femenino"];
+            if (tema == "cumpleaños")
+            {
+                saludo.sound_masculino = tema + "-" + (int)(a+1) + "-" + "masculino";
+                saludo.sound_femenino = tema + "-" + (int)(a + 1) + "-" + "femenino";
+            }
+            else
+            {
+                saludo.sound_masculino = tema + "-" + content[a]["tema"] + "-" + "masculino";
+                saludo.sound_femenino = tema + "-" + content[a]["tema"] + "-" + "femenino";
+            }
             arr.Add(saludo);
         }
     }
@@ -96,6 +108,7 @@ public class Texts : MonoBehaviour
     {
         int month = DateTime.Now.Month;
         int month_birthday = Data.Instance.userData.month;
+        print((DateTime.Now.Day + " _" + Data.Instance.userData.day + " _" + month + " _" + month_birthday));
         if (
             month + 1 == month_birthday
             || (month == 12 && month_birthday == 1)
@@ -110,6 +123,33 @@ public class Texts : MonoBehaviour
             return true;
         return false;
     }
+    public string GetNameForSound(string text)
+    {
+        print("GetNameForSound : " + text);
+        string musicName = "";
+
+        List<TextSaludosData> data;
+        switch (ScreenManager.Instance.ActivityActiveID)
+        {
+            case 1:
+                data = arriba_abajo; musicName = "arriba_abajo"; break;
+            case 2:
+                data = cosquillas; musicName = "cosquillas";  break;
+            case 3:
+                data = musica_suave; musicName = "musica_suave";  break;
+            default:
+                data = cumpleaños; musicName = "cumpleaños"; break;
+        }
+        foreach(TextSaludosData td in data)
+        {
+            if (td.masculino == text)
+                musicName = td.sound_masculino;
+            else if (td.femenino == text)
+                musicName = td.sound_femenino;
+        }
+        return musicName;
+
+    }
     public string GetSaludo()
     {
         int day = DateTime.Now.Day;
@@ -117,17 +157,19 @@ public class Texts : MonoBehaviour
         int rand = UnityEngine.Random.Range(0, 100);
         int hour = System.DateTime.Now.Hour;
 
-        print("hour: " + hour);
-
         TextSaludosData saludosData = null;
 
-        if (day == Data.Instance.userData.day && month == Data.Instance.userData.month)
-            saludosData = GetRandomCumpleanos();
+        if (CumpleanosCerca() && !yaSaludoPorCumple)
+        {
+            yaSaludoPorCumple = true;
+            saludosData = GetSaludoByTema("CUMPLEAÑOS");
+        }
         else if (SessionTimeController.Instance.lastTimeConnected_days > 5 && !Frecuencia_baja_ready)
         {
             Frecuencia_baja_ready = true;
             saludosData = GetSaludoByTema("FRECUENCIA_BAJA");
-        } else if (rand < 40)
+        }
+        else if (rand < 40)
         {
             if (DialoguesManager.Instance.weather_main == "Clouds")
                 saludosData = GetSaludoByTema("LLUVIA");
@@ -138,7 +180,7 @@ public class Texts : MonoBehaviour
         }
         else if (rand < 80)
         {
-            if (hour>5 && hour<12)
+            if (hour > 5 && hour < 12)
                 saludosData = GetSaludoByTema("MAÑANA");
             else if (hour > 11 && hour < 19)
                 saludosData = GetSaludoByTema("TARDE");
@@ -153,9 +195,16 @@ public class Texts : MonoBehaviour
         else
             return saludosData.femenino;
     }
-    private TextSaludosData GetRandomCumpleanos()
+    public TextSaludosData GetRandomCumpleanos()
     {
         return cumpleaños[cumpleaños.Count-1];
+    }
+    public string GetRandomCumpleanosVoice(TextSaludosData data)
+    {
+        if (Data.Instance.userData.sex == UserData.sexs.BOY)
+            return data.sound_masculino;
+        else
+            return data.sound_femenino;
     }
     private TextSaludosData GetSaludoByTema(string _tema)
     {
